@@ -3,7 +3,7 @@
 import { useEffect, useMemo, useState } from 'react';
 import type { SapMatlStkInAcctMod, MaterialWithUI } from '@/types/material';
 
-const ITEMS_PER_PAGE = 12;
+const ITEMS_PER_PAGE = 11;
 
 type MaterialFilter = 'all' | 'favorites' | 'memos';
 type MaterialSortField = 'material' | 'plant';
@@ -182,7 +182,7 @@ export default function MaterialsPage() {
         </p>
       </header>
 
-      <section className="flex min-h-0 flex-1 flex-col rounded-2xl border border-slate-100 bg-white shadow-xl shadow-indigo-100/50">
+      <section className="flex min-h-0 flex-1 flex-col px-8 rounded-2xl border border-slate-100 bg-white shadow-xl shadow-indigo-100/50">
         {/* Search Bar */}
         <div className="shrink-0 border-b border-slate-100 bg-slate-50/50 p-4">
           <div className="flex gap-3">
@@ -191,7 +191,7 @@ export default function MaterialsPage() {
               placeholder="Search by material code or plant..."
               value={searchInput}
               onChange={(e) => handleSearchInputChange(e.target.value)}
-              className="w-120 rounded-xl border border-slate-400 px-4 py-1 text-sm font-medium text-slate-900 placeholder:font-normal placeholder:text-slate-400 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-indigo-400"
+              className="w-120 rounded-xl border border-slate-400 px-4 py-1.5 text-sm font-medium text-slate-900 placeholder:font-normal placeholder:text-slate-400 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-indigo-400"
             />
               <span className="ml-auto flex items-center gap-1.5 text-sm font-medium text-amber-600">
               <span className="h-2 w-2 rounded-full bg-amber-400" />
@@ -246,8 +246,8 @@ export default function MaterialsPage() {
         <div className="min-h-0 flex-1 overflow-y-auto px-4">
           <table className="w-full table-fixed text-xs">
             <thead className="sticky top-0 z-10 bg-white">
-              <tr className="bg-linear-to-br from-indigo-100 to-violet-200 text-slate-600">
-                <th className="w-[14%] px-3 py-2 text-left text-sm font-semibold">
+              <tr className="bg-linear-to-br from-indigo-100 to-violet-300 text-slate-600">
+                <th className="w-[14%] px-3 py-5 text-left text-sm font-semibold">
                   <button
                     onClick={() => sortMaterials('material')}
                     className="hover:text-indigo-600"
@@ -346,31 +346,30 @@ export default function MaterialsPage() {
             </tbody>
           </table>
         </div>
-
-        {/* Pagination */}
+      </section>
+      {/* Pagination */}
         <nav
           aria-label="Pagination"
-          className="flex shrink-0 items-center justify-center gap-8 border-t border-slate-100 px-4 py-3"
+          className="flex shrink-0 rounded-2xl items-center justify-center gap-10 border-t border-slate-100 px-4 py-5 bg-linear-to-br from-indigo-100 to-violet-200"
         >
           <button
             disabled={currentPage === 1}
             onClick={() => setCurrentPage((p) => p - 1)}
-            className="w-24 rounded-full border px-4 py-1 text-sm shadow-lg font-medium text-emerald-700 hover:bg-slate-100 disabled:opacity-50 disabled:hover:bg-transparent"
+            className="w-30 rounded-2xl border py-1 text-sm shadow-lg font-medium text-slate-800 bg-blue-300 hover:bg-slate-500 disabled:opacity-50 disabled:hover:bg-transparent"
           >
             Previous
           </button>
-          <span className="text-sm text-slate-400">
+          <span className="text-sm text-slate-800">
             Page <span className="font-semibold text-indigo-600">{currentPage}</span> of {totalPages}
           </span>
           <button
             disabled={currentPage === totalPages}
             onClick={() => setCurrentPage((p) => p + 1)}
-            className="w-24 rounded-full border px-4 py-1 text-sm shadow-lg font-medium text-emerald-700 hover:bg-slate-100 disabled:opacity-50 disabled:hover:bg-transparent"
+            className="w-30 rounded-2xl border py-1 text-sm shadow-lg font-medium text-slate-800 bg-blue-300 hover:bg-slate-500 disabled:opacity-50 disabled:hover:bg-transparent"
           >
             Next
           </button>
         </nav>
-      </section>
 
       {/* Memo Modal */}
       {editingMemoId && (
