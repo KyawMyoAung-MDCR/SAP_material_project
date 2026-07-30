@@ -6,6 +6,11 @@ export async function GET() {
   const user = process.env.SAP_COMM_USER;
   const password = process.env.SAP_COMM_PASSWORD;
 
+  console.log('DEBUG — baseUrl exists:', !!baseUrl);
+  console.log('DEBUG — user:', user); 
+  console.log('DEBUG — password length:', password?.length);
+  console.log('DEBUG — password has trailing space:', password !== password?.trim());
+
   if (!baseUrl || !user || !password) {
     return NextResponse.json(
       { error: 'Not complete SAP credentials' },
