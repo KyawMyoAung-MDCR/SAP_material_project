@@ -355,7 +355,7 @@ export default function MaterialsPage() {
           <button
             disabled={currentPage === 1}
             onClick={() => setCurrentPage((p) => p - 1)}
-            className="w-30 rounded-2xl border py-1 text-sm shadow-lg font-medium text-slate-800 bg-blue-300 hover:bg-slate-500 disabled:opacity-50 disabled:hover:bg-transparent"
+            className="w-30 rounded-2xl border py-1 text-sm shadow-lg font-medium text-slate-800 bg-linear-to-b from-blue-200 to-blue-300 hover:bg-slate-500 disabled:opacity-50 disabled:hover:bg-transparent"
           >
             Previous
           </button>
@@ -365,7 +365,7 @@ export default function MaterialsPage() {
           <button
             disabled={currentPage === totalPages}
             onClick={() => setCurrentPage((p) => p + 1)}
-            className="w-30 rounded-2xl border py-1 text-sm shadow-lg font-medium text-slate-800 bg-blue-300 hover:bg-slate-500 disabled:opacity-50 disabled:hover:bg-transparent"
+            className="w-30 rounded-2xl border py-1 text-sm shadow-lg font-medium text-slate-800 bg-linear-to-b from-blue-200 to-blue-300 hover:bg-slate-500 disabled:opacity-50 disabled:hover:bg-transparent"
           >
             Next
           </button>
