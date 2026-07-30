@@ -2,8 +2,7 @@ import { NextResponse } from 'next/server';
 import { SapMatlStkInAcctMod } from '@/types/material';
 
 export async function GET() {
-  const rawBaseUrl = process.env.SAP_MATERIAL_API_URL;
-  const baseUrl = rawBaseUrl?.replace(/\/$/, '');
+  const baseUrl = process.env.SAP_MATERIAL_API_URL;
   const user = process.env.SAP_COMM_USER;
   const password = process.env.SAP_COMM_PASSWORD;
 

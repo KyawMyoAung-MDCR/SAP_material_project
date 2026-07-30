@@ -186,76 +186,67 @@ export default function MaterialsPage() {
         {/* Search Bar */}
         <div className="shrink-0 border-b border-slate-100 bg-slate-50/50 p-4">
           <div className="flex gap-3">
-            <input
+          <input
               type="search"
               placeholder="Search by material code or plant..."
               value={searchInput}
               onChange={(e) => handleSearchInputChange(e.target.value)}
-              onKeyDown={handleKeyDown}
-              className="flex-1 rounded-xl border border-slate-200 px-4 py-2 text-sm font-medium text-slate-900 placeholder:font-normal placeholder:text-slate-400 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-indigo-400"
+              className="w-120 rounded-xl border border-slate-400 px-4 py-1 text-sm font-medium text-slate-900 placeholder:font-normal placeholder:text-slate-400 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-indigo-400"
             />
-            <button
-              onClick={() => setCurrentPage(1)}
-              className="flex shrink-0 items-center gap-2 rounded-xl bg-indigo-600 px-5 py-2 text-sm font-medium text-white shadow-sm shadow-indigo-200 hover:bg-indigo-700"
-            >
-              Search
-            </button>
-            {(searchInput || activeFilter !== 'all') && (
-              <button
-                onClick={handleReset}
-                className="shrink-0 rounded-xl bg-slate-100 px-4 py-2 text-sm font-medium text-slate-600 hover:bg-slate-200"
-              >
-                Reset
-              </button>
-            )}
+              <span className="ml-auto flex items-center gap-1.5 text-sm font-medium text-amber-600">
+              <span className="h-2 w-2 rounded-full bg-amber-400" />
+                Quantity lower than 10 is highlighted.
+              </span>
           </div>
         </div>
 
         {/* Summary Bar */}
-        <div className="flex shrink-0 items-center justify-between border-b border-slate-100 bg-slate-50/30 px-4 py-2 text-xs">
-          <div className="flex items-center gap-3">
+        <div className="flex shrink-0 items-center justify-between border-b border-slate-100 bg-slate-50/30 px-4 py-5 text-sm">
+          <div className="flex w-full items-center justify-between">
             <span className="text-slate-400">
-              Showing <span className="font-semibold text-slate-600">{firstItem}-{lastItem}</span> of{' '}
+              Showing <span className="font-semibold text-slate-600">{firstItem} - {lastItem}</span> of{' '}
               <span className="font-semibold text-slate-600">{filteredMaterials.length}</span>
             </span>
-            <button
-              onClick={() => toggleFilter('favorites')}
-              className={`rounded-full border px-2.5 py-0.5 text-xs font-semibold shadow-sm transition-all ${
-                activeFilter === 'favorites'
-                  ? 'border-amber-600 bg-amber-500 text-white ring-2 ring-amber-300'
-                  : 'border-amber-100 bg-amber-50 text-amber-700 hover:bg-amber-100'
-              }`}
-            >
-              Favorites: {counts.favourites}
-            </button>
-            <button
-              onClick={() => toggleFilter('memos')}
-              className={`rounded-full border px-2.5 py-0.5 text-xs font-semibold shadow-sm transition-all ${
-                activeFilter === 'memos'
-                  ? 'border-indigo-700 bg-indigo-600 text-white ring-2 ring-indigo-300'
-                  : 'border-indigo-100 bg-indigo-50 text-indigo-700 hover:bg-indigo-100'
-              }`}
-            >
-              Memos: {counts.memos}
-            </button>
-            <span className="inline-flex items-center gap-1 rounded-full border border-emerald-100 bg-emerald-50 px-2.5 py-0.5 font-semibold text-emerald-600">
-              High: {counts.high}
-            </span>
-            <span className="inline-flex items-center gap-1 rounded-full border border-red-100 bg-red-50 px-2.5 py-0.5 font-semibold text-red-600">
-              Low: {counts.low}
-            </span>
+            <div className="flex items-center gap-5">
+              <button
+                onClick={() => toggleFilter('favorites')}
+                className={`rounded-full border px-2.5 py-0.5 text-xs font-semibold shadow-sm transition-all ${
+                  activeFilter === 'favorites'
+                    ? 'border-amber-600 bg-amber-500 text-white ring-2 ring-amber-300'
+                    : 'border-amber-100 bg-amber-50 text-amber-700 hover:bg-amber-100'
+                }`}
+              >
+                Favorites: {counts.favourites}
+              </button>
+
+              <button
+                onClick={() => toggleFilter('memos')}
+                className={`rounded-full border px-2.5 py-0.5 text-xs font-semibold shadow-sm transition-all ${
+                  activeFilter === 'memos'
+                    ? 'border-indigo-700 bg-indigo-600 text-white ring-2 ring-indigo-300'
+                    : 'border-indigo-100 bg-indigo-50 text-indigo-700 hover:bg-indigo-100'
+                }`}
+              >
+                Memos: {counts.memos}
+              </button>
+
+              <span className="inline-flex items-center gap-1 rounded-full border border-emerald-100 bg-emerald-50 px-2.5 py-0.5 text-xs font-semibold text-emerald-600">
+                High: {counts.high}
+              </span>
+
+              <span className="inline-flex items-center gap-1 rounded-full border border-red-100 bg-red-50 px-2.5 py-0.5 text-xs font-semibold text-red-600">
+                Low: {counts.low}
+              </span>
+            </div>
+
           </div>
-          <span className="flex items-center gap-1.5 font-medium text-amber-600">
-            <span className="h-2 w-2 rounded-full bg-amber-400" />
-            Quantity lower than 10 is highlighted
-          </span>
         </div>
 
         {/* Table */}
         <div className="min-h-0 flex-1 overflow-y-auto px-4">
           <table className="w-full table-fixed text-xs">
             <thead className="sticky top-0 z-10 bg-white">
-              <tr className="bg-linear-to-br from-indigo-50 to-violet-50 text-slate-600">
+              <tr className="bg-linear-to-br from-indigo-100 to-violet-200 text-slate-600">
                 <th className="w-[14%] px-3 py-2 text-left text-sm font-semibold">
                   <button
                     onClick={() => sortMaterials('material')}
@@ -359,12 +350,12 @@ export default function MaterialsPage() {
         {/* Pagination */}
         <nav
           aria-label="Pagination"
-          className="flex shrink-0 items-center justify-center gap-4 border-t border-slate-100 px-4 py-3"
+          className="flex shrink-0 items-center justify-center gap-8 border-t border-slate-100 px-4 py-3"
         >
           <button
             disabled={currentPage === 1}
             onClick={() => setCurrentPage((p) => p - 1)}
-            className="rounded-lg px-4 py-1.5 text-sm font-medium text-slate-500 hover:bg-slate-100 disabled:opacity-30 disabled:hover:bg-transparent"
+            className="w-24 rounded-full border px-4 py-1 text-sm shadow-lg font-medium text-emerald-700 hover:bg-slate-100 disabled:opacity-50 disabled:hover:bg-transparent"
           >
             Previous
           </button>
@@ -374,7 +365,7 @@ export default function MaterialsPage() {
           <button
             disabled={currentPage === totalPages}
             onClick={() => setCurrentPage((p) => p + 1)}
-            className="rounded-lg px-4 py-1.5 text-sm font-medium text-slate-500 hover:bg-slate-100 disabled:opacity-30 disabled:hover:bg-transparent"
+            className="w-24 rounded-full border px-4 py-1 text-sm shadow-lg font-medium text-emerald-700 hover:bg-slate-100 disabled:opacity-50 disabled:hover:bg-transparent"
           >
             Next
           </button>
